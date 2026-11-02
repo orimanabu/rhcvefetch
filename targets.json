@@ -29,8 +29,9 @@
     {
       "type": "CVE",
       "description": "PwnEscape",
-      "id": "CVE-2026-99999 "
+      "id": "CVE-2026-99999"
     },
+
     {
       "type": "CVE",
       "description": "PHP2Shell 1",
