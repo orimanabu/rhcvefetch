@@ -1,0 +1,23 @@
+[project]
+name = "rhcvefetch"
+version = "0.1.0"
+description = "Fetch Red Hat CVE and Security Bulletin (RHSB) pages as rendered HTML"
+requires-python = ">=3.12"
+dependencies = ["playwright>=1.49"]
+
+[project.scripts]
+rhcvefetch = "rhcvefetch:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["rhcvefetch"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

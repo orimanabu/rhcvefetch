@@ -1,0 +1,83 @@
+{
+  "targets": [
+    {
+      "type": "CVE",
+      "description": "eMudhra 1",
+      "id": "CVE-2026-114406"
+    },
+    {
+      "type": "CVE",
+      "description": "eMudhra 2",
+      "id": "CVE-2026-111943"
+    },
+    {
+      "type": "CVE",
+      "description": "eMudhra 3",
+      "id": "CVE-2026-91403"
+    },
+    {
+      "type": "CVE",
+      "description": "eMudhra 4",
+      "id": "CVE-2026-113812"
+    },
+    {
+      "type": "RHSB",
+      "description": "RHSB-2026-012 Certificate compromise - eMudhra (CVE-2026-114406, CVE-2026-111943, CVE-2026-91403, CVE-2026-113812)",
+      "id": "RHSB-2026-012"
+    },
+
+    {
+      "type": "CVE",
+      "description": "PwnEscape",
+      "id": "CVE-2026-99999 "
+    },
+    {
+      "type": "CVE",
+      "description": "PHP2Shell 1",
+      "id": "CVE-2026-109618"
+    },
+    {
+      "type": "CVE",
+      "description": "PHP2Shell 2",
+      "id": "CVE-2026-109619"
+    },
+    {
+      "type": "CVE",
+      "description": "PHP2Shell 3",
+      "id": "CVE-2026-115560"
+    },
+    {
+      "type": "RHSB",
+      "description": "RHSB-2026-013 Request handling memory corruption - php (CVE-2026-109618, CVE-2026-109619, CVE-2026-115560) - \"php2shell\"",
+      "id": "RHSB-2026-013"
+    },
+
+    {
+      "type": "RHSB",
+      "description": "RHSB-2026-014 Multiple kernel vulnerabilities",
+      "id": "RHSB-2026-014"
+    },
+
+    {
+      "type": "CVE",
+      "description": "node2shell",
+      "id": "CVE-2026-111497"
+    },
+    {
+      "type": "RHSB",
+      "description": "RHSB-2026-015 Out-of-Bounds Write - Google Brotli Decoder (CVE-2026-111497) - \"node2shell\"",
+      "id": "RHSB-2026-015"
+    },
+
+    {
+      "type": "CVE",
+      "description": "Use-after-free - kernel IPv4",
+      "id": "CVE-2026-98432"
+    },
+    {
+      "type": "RHSB",
+      "description": "RHSB-2026-016 Use-after-free - kernel IPv4 (CVE-2026-98432)",
+      "id": "RHSB-2026-016"
+    }
+  ]
+}
