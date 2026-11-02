@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from rhcvefetch import Target, jobs_for, load_targets, parse_target, save_atomic, wait_for_stable
+from rhcvefetch import Target, jobs_for, load_targets, parse_target, same_content, save_atomic, visible_text, wait_for_stable
 
 
 def test_parse_valid_cve_and_rhsb():
@@ -101,3 +101,27 @@ def test_wait_for_stable_times_out_if_always_changing():
 
     with pytest.raises(RuntimeError):
         wait_for_stable(Growing(), timeout=0.05, interval=0.01)
+
+
+def test_visible_text_ignores_scripts_styles_and_iframes():
+    html = (
+        "<html><head><style>.a{}</style><script>var x=1;</script></head>"
+        "<body><h1>CVE-2026-98432</h1><iframe>ad</iframe><p>Use-after-free\n  in   kernel</p>"
+        "<noscript>enable js</noscript></body></html>"
+    )
+    assert visible_text(html) == ["CVE-2026-98432", "Use-after-free in kernel"]
+
+
+def test_same_content_ignores_random_ids_and_scripts(tmp_path):
+    old = '<div id="pfe-detail-aaa111bbb">Severity: Important</div><script>fetchdate="1"</script>'
+    new = '<div id="pfe-detail-ccc222ddd">Severity: Important</div><script>fetchdate="2"</script>'
+    f = tmp_path / "CVE-2026-98432.html"
+    f.write_text(old)
+    assert same_content(f, new)
+
+
+def test_same_content_detects_text_change_and_missing_file(tmp_path):
+    f = tmp_path / "CVE-2026-98432.html"
+    f.write_text("<p>Severity: Important</p>")
+    assert not same_content(f, "<p>Severity: Critical</p>")
+    assert not same_content(tmp_path / "missing.html", "<p>x</p>")

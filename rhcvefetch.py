@@ -10,6 +10,7 @@ import sys
 import time
 import urllib.request
 from dataclasses import dataclass
+from html.parser import HTMLParser
 from pathlib import Path
 
 CVE_HTML_URL = "https://access.redhat.com/security/cve/{}"
@@ -95,6 +96,48 @@ def jobs_for(target: Target, data_dir: Path) -> list[Job]:
     return [Job(target, RHSB_HTML_URL.format(target.id), out_dir / f"{target.id}.html", headless=False)]
 
 
+class _VisibleText(HTMLParser):
+    SKIP = {"script", "style", "iframe", "noscript", "template"}
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.depth = 0  # nesting depth inside SKIP elements
+        self.blocks: list[str] = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.SKIP:
+            self.depth += 1
+
+    def handle_endtag(self, tag):
+        if tag in self.SKIP and self.depth:
+            self.depth -= 1
+
+    def handle_data(self, data):
+        if not self.depth and data.strip():
+            self.blocks.append(" ".join(data.split()))
+
+
+def visible_text(html: str) -> list[str]:
+    """Return the text blocks of `html`, ignoring scripts, styles and iframes.
+
+    Rendered pages embed random element IDs, timestamps and third-party scripts
+    (analytics, consent) that change on every fetch. They are not part of the
+    CVE content, so comparing only the visible text tells real changes apart.
+    """
+    parser = _VisibleText()
+    parser.feed(html)
+    return parser.blocks
+
+
+def same_content(path: Path, new_html: str) -> bool:
+    """True if the file at `path` exists and has the same visible text as `new_html`."""
+    try:
+        old_html = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return False
+    return visible_text(old_html) == visible_text(new_html)
+
+
 def save_atomic(path: Path, content: str | bytes) -> None:
     """Write via a temporary file so an interrupted run never leaves a partial file."""
     if isinstance(content, str):
@@ -147,7 +190,11 @@ def fetch_all(
     timeout: float,
     skip_existing: bool,
 ) -> tuple[int, int, int]:
-    """Download every file of every target. Returns (saved, existing, failed)."""
+    """Download every file of every target. Returns (saved, unchanged, existing, failed).
+
+    A rendered page whose visible text equals the existing file is left untouched
+    ("unchanged"), so that meaningless differences do not show up in git.
+    """
     from playwright.sync_api import Error as PlaywrightError
     from playwright.sync_api import sync_playwright
 
@@ -161,7 +208,7 @@ def fetch_all(
             else:
                 todo.append(job)
 
-    saved = failed = 0
+    saved = unchanged = failed = 0
     page = None
     with contextlib.ExitStack() as stack:
         for n, job in enumerate(todo):
@@ -180,6 +227,10 @@ def fetch_all(
                     content = fetch_raw(job.url, timeout=timeout)
                     if job.dest.suffix == ".json":
                         json.loads(content)  # do not store an error page as JSON data
+                if job.headless and same_content(job.dest, content):
+                    print(f"unchanged {job.dest}")
+                    unchanged += 1
+                    continue
                 save_atomic(job.dest, content)
             except (PlaywrightError, RuntimeError, OSError, ValueError) as e:
                 print(f"failed  {job.target.type} {job.target.id} ({job.url}): {e}", file=sys.stderr)
@@ -187,7 +238,7 @@ def fetch_all(
             else:
                 print(f"saved   {job.dest}")
                 saved += 1
-    return saved, existing, failed
+    return saved, unchanged, existing, failed
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -209,10 +260,13 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {e}", file=sys.stderr)
         return 2
 
-    saved, existing, failed = fetch_all(
+    saved, unchanged, existing, failed = fetch_all(
         targets, args.data_dir, delay=args.delay, timeout=args.timeout, skip_existing=args.skip_existing
     )
-    print(f"done: {saved} saved, {existing} already existed, {failed} failed, {skipped} invalid entries skipped")
+    print(
+        f"done: {saved} saved, {unchanged} unchanged, {existing} skipped (existing), "
+        f"{failed} failed, {skipped} invalid entries skipped"
+    )
     return 1 if failed or skipped else 0
 
 

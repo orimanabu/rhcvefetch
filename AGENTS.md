@@ -22,6 +22,7 @@
 ## Options
 
 - By default, `rhcvefetch` downloads every file again and overwrites existing ones.
+  - Exception: if a re-downloaded `<CVE_ID>.html` has the same visible text as the existing file (ignoring `<script>`, `<style>`, `<iframe>` and `<noscript>`), the existing file is kept as is. Rendered pages contain random IDs, timestamps and injected third-party scripts that change on every fetch, and these differences are meaningless in git.
 - `--skip-existing`: skip files that already exist.
 - `-i, --input <path>`: input file (default: `targets.json`).
 - `-o, --data-dir <path>`: output directory (default: `data`).
