@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Wed Sep 23 2026 12:51:27 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Wednesday, 23-Sep-2026 12:51:35 UTC",
-        fetchdate  : "Tuesday, 03-Nov-2026 20:00:36 UTC",
+        fetchdate  : "Tuesday, 03-Nov-2026 20:45:35 UTC",
         primer     : {}
       };
       var h=Object.defineProperty;var i=(t,o)=>()=>(t&&(o=t(t=0)),o);var w=(t,o)=>{for(var r in o)h(t,r,{get:o[r],enumerable:!0})};var e=i(()=>{});var a=i(()=>{e()});var l={};w(l,{loginIfSessionExists:()=>_});function _(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,r=document.cookie.indexOf("rh_sso_session")>=0,p=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&r&&p){let m=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${m}`)}}var c=i(()=>{e();a()});e();e();a();var u="cp_primer_global_ready",g=!1;function s(){return new Promise(t=>{g?t(window.portal.primer):window.addEventListener(u,()=>{t(window.portal.primer)})})}e();var d=!0;a();window.portal.primer.onReady=s;d&&Promise.resolve().then(()=>(c(),l)).then(({loginIfSessionExists:t})=>{t()});document.documentElement.setAttribute("lang",document.documentElement.getAttribute("lang")||window.portal.lang||"en");
@@ -1036,7 +1036,7 @@
             <div class="published-date">
                                                                     <span>Public Date: <pfe-datetime id="simpleUnixtime" timestamp="1792022400" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> October 30, 2026, 16:03</pfe-datetime></span>
                                                               <br>
-              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1793661854" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 2, 2026, 18:24</pfe-datetime></span>
+              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1793739607" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 3, 2026, 16:00</pfe-datetime></span>
             </div>
             <div class="row">
               <div class="bulletins-vote-feedback">
@@ -1080,7 +1080,7 @@
             <div><h2>Executive Summary</h2>
 <p>This vulnerability is tracked as <a href="https://access.redhat.com/security/cve/CVE-2026-98432">CVE-2026-98432</a> and has been rated with a severity impact of <a href="https://access.redhat.com/security/updates/classification">Critical</a>. Red Hat is expediting the release of fixes.</p>
 <p>A use-after-free vulnerability was found in the Linux kernel's IPv4 networking subsystem. A remote, unauthenticated attacker could exploit a race condition during TCP connection request processing to trigger remote code execution. The flaw arises when socket options are freed while still being accessed by a concurrent operation, such as a retransmitted connection request or a socket migration. Exploitation requires precise timing of network requests but does not require any privileges or user interaction.</p>
-<p>This vulnerability affects any system running a vulnerable kernel version with IPv4 TCP networking enabled. Since TCP is fundamental to nearly all networked services, the affected surface is broad. Systems accepting inbound TCP connections are most directly exposed.</p>
+<p>This vulnerability affects any system running a vulnerable kernel version with IPv4 TCP networking enabled. Since TCP is fundamental to nearly all networked services, the affected surface is broad. Systems accepting inbound TCP connections are most directly exposed. The vulnerability exists in the IPv4 TCP stack itself. While disabling MPTCP may reduce exposure in some configurations, it is not a complete mitigation. Red Hat Enterprise Linux, which disables MPTCP in its default configuration, is still vulnerable.</p>
 <p>The investigation is ongoing and this bulletin will be updated as new information emerges. Log in with your Red Hat account, then click the "Follow" button below to be notified of changes to this bulletin.</p>
 <h2>Affected Products</h2>
 <p>The following Red Hat product versions are directly affected:</p>
@@ -1090,7 +1090,7 @@
 <li>Red Hat Enterprise Linux 10</li>
 <li>Red Hat OpenShift Container Platform</li>
 </ul>
-<p><em>Further, any Red Hat product that relies on the Red Hat Enterprise Linux kernel (including RHEL CoreOS) is also potentially impacted. This includes layered products such as Red Hat OpenShift Container Platform, Red Hat OpenStack Platform, and Red Hat Virtualization.</em></p>
+<p><em>Further, any Red Hat product that relies on the Red Hat Enterprise Linux kernel is also potentially impacted. This includes layered products such as Red Hat OpenStack Platform, and Red Hat Virtualization.</em></p>
 <p><em>Please ensure that the underlying Red Hat Enterprise Linux kernel is current in these product environments.</em></p>
 <h2>Mitigation</h2>
 <h3>Overall Guidance</h3>
@@ -1113,14 +1113,26 @@ sudo nft list table inet cve_2026_98432
 </code></pre><h3>Removal</h3>
 <p>After the kernel has been updated to a fixed version, remove the mitigation rule:</p>
 <pre><code>sudo nft delete table inet cve_2026_98432
-</code></pre><h3>Red Hat OpenShift Container Platform</h3>
-<p>Red Hat OpenShift Container Platform 4 is affected. All cluster nodes run Red Hat Enterprise Linux CoreOS, which includes the affected kernel. Multipath TCP is not a required condition for this flaw. Neither the upstream fix nor the CVE record identifies it as one, and nodes in their default configuration, where MPTCP is disabled, remain affected.</p>
+</code></pre><h3>Why Red Hat Recommends Packet Filtering Over Disabling MPTCP</h3>
+<p>Some organizations have recommended disabling MPTCP with <code>sysctl -w net.mptcp.enabled=0</code>; however, this approach only blocks one method of exploitation.</p>
+<p>Having MPTCP enabled is not a precondition of this vulnerability. The upstream fix addresses two races in ordinary IPv4 TCP connection handling, in which socket options attached to an inbound connection request are freed while a concurrent operation is still reading them. The necessary input is IPv4 options carried on an inbound connection request, combined with one of those races, such as a retransmitted connection request or a socket migration.</p>
+<p>Two considerations for Red Hat customers:</p>
+<ul>
+<li><strong>MPTCP support is disabled in the default Red Hat Enterprise Linux configuration.</strong> Advice to set <code>net.mptcp.enabled=0</code> therefore changes nothing on a default system, and the accompanying advice to restart services does not apply to it. Such systems remain affected by this vulnerability. On a system where an administrator had previously enabled MPTCP, disabling it now will governs only sockets created after the change, so services already running would need to be restarted for it to take effect, and the system would still be affected.</li>
+<li><strong>Checking whether a system has MPTCP listeners is not a test for exposure.</strong> A command such as <code>ss -Mlnp</code> reports whether a system matches one known vulnerable configuration. It is not a complete view of whether the system is vulnerable. A result showing no MPTCP listeners should be treated as informational rather than as reassurance.</li>
+</ul>
+<p>Red Hat recommends the packet filtering mitigation described above because it removes the input the flaw requires, rather than removing one configuration in which exploitation has been demonstrated. It also takes effect immediately, for both new and existing connections: the rule drops matching packets in the network stack before they reach any socket, so the state of sockets that are already open is not a factor and services that are already running do not need to be restarted.</p>
+<p>Neither measure is a substitute for applying the kernel update.</p>
+<h3>Red Hat OpenShift Container Platform</h3>
+<p>Red Hat OpenShift Container Platform 4 is affected. All cluster nodes run Red Hat Enterprise Linux CoreOS, which includes the affected kernel. As described above, Multipath TCP is not a required condition for this flaw, and nodes in their default configuration, where MPTCP is disabled, remain affected.</p>
 <h4>Interim guidance</h4>
-<p>Red Hat is evaluating interim guidance for OpenShift Container Platform and will update this bulletin as soon as it is available.</p>
+<p>Red Hat is preparing guidance for mitigating OpenShift Container Platform and will update this bulletin as soon as it is available.</p>
 <p>Customers considering the nftables rule described in this bulletin for use on OpenShift nodes should understand its scope. Rules applied on a node act only on traffic traversing that node's host network namespace. Traffic handled within the cluster's software-defined network, including pod to pod traffic, is not filtered, and whether externally originated traffic forwarded to pods is filtered depends on the cluster's network configuration. Filtering at the network boundary in front of the cluster is not subject to these limitations.</p>
 <h2>References</h2>
 <p><a href="https://access.redhat.com/bounce/?externalURL=https%3A%2F%2Fwww.cve.org%2FCVERecord%3Fid%3DCVE-2026-98432">CVE-2026-98432 - CVE Record</a></p>
 <p><a href="https://access.redhat.com/bounce/?externalURL=https%3A%2F%2Fwww.anthropic.com%2Fresearch%2Fdiscovering-vulnerabilities-with-claude">Discovering vulnerabilities with Claude - Anthropic Research</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/configuring_and_managing_networking/getting-started-with-multipath-tcp_configuring-and-managing-networking">Getting started with Multipath TCP - Red Hat Enterprise Linux 9</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/getting-started-with-multipath-tcp_configuring-and-managing-networking">Getting started with Multipath TCP - Red Hat Enterprise Linux 8</a></p>
 <p><a href="https://access.redhat.com/articles/5433831">How to use GPG to verify signed content from Product Security</a></p>
 </div>
       </div>
