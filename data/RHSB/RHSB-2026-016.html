@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Wed Sep 23 2026 12:51:27 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Wednesday, 23-Sep-2026 12:51:35 UTC",
-        fetchdate  : "Tuesday, 03-Nov-2026 23:45:32 UTC",
+        fetchdate  : "Wednesday, 04-Nov-2026 00:45:34 UTC",
         primer     : {}
       };
       var h=Object.defineProperty;var i=(t,o)=>()=>(t&&(o=t(t=0)),o);var w=(t,o)=>{for(var r in o)h(t,r,{get:o[r],enumerable:!0})};var e=i(()=>{});var a=i(()=>{e()});var l={};w(l,{loginIfSessionExists:()=>_});function _(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,r=document.cookie.indexOf("rh_sso_session")>=0,p=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&r&&p){let m=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${m}`)}}var c=i(()=>{e();a()});e();e();a();var u="cp_primer_global_ready",g=!1;function s(){return new Promise(t=>{g?t(window.portal.primer):window.addEventListener(u,()=>{t(window.portal.primer)})})}e();var d=!0;a();window.portal.primer.onReady=s;d&&Promise.resolve().then(()=>(c(),l)).then(({loginIfSessionExists:t})=>{t()});document.documentElement.setAttribute("lang",document.documentElement.getAttribute("lang")||window.portal.lang||"en");
@@ -1036,7 +1036,7 @@
             <div class="published-date">
                                                                     <span>Public Date: <pfe-datetime id="simpleUnixtime" timestamp="1792022400" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> October 30, 2026, 16:03</pfe-datetime></span>
                                                               <br>
-              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1793739607" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 3, 2026, 16:00</pfe-datetime></span>
+              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1793751798" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 3, 2026, 19:23</pfe-datetime></span>
             </div>
             <div class="row">
               <div class="bulletins-vote-feedback">
@@ -1098,6 +1098,7 @@
 <h3>Filter Incoming IPv4 Packets Containing IP Options</h3>
 <p>The following nftables table drops incoming IPv4 TCP packets that contain IP options, which reduces exposure to this vulnerability but cannot fully prevent it. Ordinary application traffic is generally expected to remain unaffected, because standard TCP options are carried in the TCP header and continue to be permitted.</p>
 <p><strong>Warning:</strong>  Review this rule against your own traffic, network configuration, and operational requirements, and test it in a non-production environment before deploying it.</p>
+<p>This rule is not persistent and will not survive a reboot. Customers applying it should ensure it is reapplied after any reboot that occurs before the kernel update is installed.</p>
 <h3>Procedure</h3>
 <p>Save the following to a file named <code>cve-2026-98432.nft</code>:</p>
 <pre><code>table inet cve_2026_98432 {
@@ -1128,6 +1129,10 @@ sudo nft list table inet cve_2026_98432
 <h4>Interim guidance</h4>
 <p>Red Hat is preparing guidance for mitigating OpenShift Container Platform and will update this bulletin as soon as it is available.</p>
 <p>Customers considering the nftables rule described in this bulletin for use on OpenShift nodes should understand its scope. Rules applied on a node act only on traffic traversing that node's host network namespace. Traffic handled within the cluster's software-defined network, including pod to pod traffic, is not filtered, and whether externally originated traffic forwarded to pods is filtered depends on the cluster's network configuration. Filtering at the network boundary in front of the cluster is not subject to these limitations.</p>
+<h3>Product Specific Mitigation Steps</h3>
+<ul>
+<li><a href="https://access.redhat.com/solutions/7149663">Managed OpenShift (ROSA Classic / ROSA HCP / ARO / OSD)</a></li>
+</ul>
 <h2>References</h2>
 <p><a href="https://access.redhat.com/bounce/?externalURL=https%3A%2F%2Fwww.cve.org%2FCVERecord%3Fid%3DCVE-2026-98432">CVE-2026-98432 - CVE Record</a></p>
 <p><a href="https://access.redhat.com/bounce/?externalURL=https%3A%2F%2Fwww.anthropic.com%2Fresearch%2Fdiscovering-vulnerabilities-with-claude">Discovering vulnerabilities with Claude - Anthropic Research</a></p>
