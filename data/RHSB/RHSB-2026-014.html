@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Wed Sep 23 2026 12:51:27 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Wednesday, 23-Sep-2026 12:51:35 UTC",
-        fetchdate  : "Thursday, 05-Nov-2026 14:00:32 UTC",
+        fetchdate  : "Thursday, 05-Nov-2026 15:00:34 UTC",
         primer     : {}
       };
       var h=Object.defineProperty;var i=(t,o)=>()=>(t&&(o=t(t=0)),o);var w=(t,o)=>{for(var r in o)h(t,r,{get:o[r],enumerable:!0})};var e=i(()=>{});var a=i(()=>{e()});var l={};w(l,{loginIfSessionExists:()=>_});function _(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,r=document.cookie.indexOf("rh_sso_session")>=0,p=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&r&&p){let m=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${m}`)}}var c=i(()=>{e();a()});e();e();a();var u="cp_primer_global_ready",g=!1;function s(){return new Promise(t=>{g?t(window.portal.primer):window.addEventListener(u,()=>{t(window.portal.primer)})})}e();var d=!0;a();window.portal.primer.onReady=s;d&&Promise.resolve().then(()=>(c(),l)).then(({loginIfSessionExists:t})=>{t()});document.documentElement.setAttribute("lang",document.documentElement.getAttribute("lang")||window.portal.lang||"en");
