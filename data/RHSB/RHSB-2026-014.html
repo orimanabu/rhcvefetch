@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Wed Sep 23 2026 12:51:27 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Wednesday, 23-Sep-2026 12:51:35 UTC",
-        fetchdate  : "Tuesday, 10-Nov-2026 16:00:52 UTC",
+        fetchdate  : "Tuesday, 10-Nov-2026 17:00:58 UTC",
         primer     : {}
       };
       var h=Object.defineProperty;var i=(t,o)=>()=>(t&&(o=t(t=0)),o);var w=(t,o)=>{for(var r in o)h(t,r,{get:o[r],enumerable:!0})};var e=i(()=>{});var a=i(()=>{e()});var l={};w(l,{loginIfSessionExists:()=>_});function _(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,r=document.cookie.indexOf("rh_sso_session")>=0,p=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&r&&p){let m=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${m}`)}}var c=i(()=>{e();a()});e();e();a();var u="cp_primer_global_ready",g=!1;function s(){return new Promise(t=>{g?t(window.portal.primer):window.addEventListener(u,()=>{t(window.portal.primer)})})}e();var d=!0;a();window.portal.primer.onReady=s;d&&Promise.resolve().then(()=>(c(),l)).then(({loginIfSessionExists:t})=>{t()});document.documentElement.setAttribute("lang",document.documentElement.getAttribute("lang")||window.portal.lang||"en");
@@ -1036,7 +1036,7 @@
             <div class="published-date">
                                                 <span>Created Date: <pfe-datetime id="simpleUnixtime" timestamp="1792881095" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> October 24, 2026, 18:31</pfe-datetime></span>
                                             <br>
-              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1794326150" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 10, 2026, 10:55</pfe-datetime></span>
+              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1794326673" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 10, 2026, 11:04</pfe-datetime></span>
             </div>
             <div class="row">
               <div class="bulletins-vote-feedback">
@@ -1077,8 +1077,16 @@
 <li>ZDI-CAN-33549</li>
 </ul>
 <h2>Potentially Affected</h2>
+<p>The following reported vulnerabilities continue to be under evaluation:</p>
+<ul>
+<li>ZDI-CAN-34068 - Important</li>
+<li>ZDI-CAN-34076 - Important</li>
+</ul>
+<h2>Affected</h2>
 <ul>
 <li>ZDI-CAN-33367 - Important
+<ul>
+<li>Patches available as follows:
 <ul>
 <li><a href="https://access.redhat.com/errata/RHSA-2026:176533">RHSA-2026:176533</a> - RHEL 7 ELS</li>
 <li><a href="https://access.redhat.com/errata/RHSA-2026:176274">RHSA-2026:176274</a> - RHEL 8.10.z</li>
@@ -1093,8 +1101,8 @@
 <li><a href="https://access.redhat.com/errata/RHSA-2026:176201">RHSA-2026:176201</a> - RHEL 10.2.z</li>
 </ul>
 </li>
-<li>ZDI-CAN-34068 - Important</li>
-<li>ZDI-CAN-34076 - Important</li>
+</ul>
+</li>
 </ul>
 <p>The investigation is ongoing and this bulletin will be updated as new information emerges. Log in with your Red Hat account, then click the "Follow" button below to be notified of changes to this bulletin.</p>
 </div>
