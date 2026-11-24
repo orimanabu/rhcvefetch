@@ -112,12 +112,12 @@
         env        : "prod",
         lang       : "en",
         version    : "1.5.32",
-        builddate  : "Wed Sep 23 2026 12:51:27 GMT+0000 (Coordinated Universal Time)",
-        deploydate : "Wednesday, 23-Sep-2026 12:51:35 UTC",
-        fetchdate  : "Tuesday, 24-Nov-2026 15:46:04 UTC",
+        builddate  : "Tue Nov 24 2026 17:00:23 GMT+0000 (Coordinated Universal Time)",
+        deploydate : "Tuesday, 24-Nov-2026 17:00:31 UTC",
+        fetchdate  : "Tuesday, 24-Nov-2026 18:00:36 UTC",
         primer     : {}
       };
-      var h=Object.defineProperty;var i=(t,o)=>()=>(t&&(o=t(t=0)),o);var w=(t,o)=>{for(var r in o)h(t,r,{get:o[r],enumerable:!0})};var e=i(()=>{});var a=i(()=>{e()});var l={};w(l,{loginIfSessionExists:()=>_});function _(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,r=document.cookie.indexOf("rh_sso_session")>=0,p=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&r&&p){let m=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${m}`)}}var c=i(()=>{e();a()});e();e();a();var u="cp_primer_global_ready",g=!1;function s(){return new Promise(t=>{g?t(window.portal.primer):window.addEventListener(u,()=>{t(window.portal.primer)})})}e();var d=!0;a();window.portal.primer.onReady=s;d&&Promise.resolve().then(()=>(c(),l)).then(({loginIfSessionExists:t})=>{t()});document.documentElement.setAttribute("lang",document.documentElement.getAttribute("lang")||window.portal.lang||"en");
+      var w=Object.defineProperty;var c=(t,o)=>()=>(t&&(o=t(t=0)),o);var y=(t,o)=>{for(var n in o)w(t,n,{get:o[n],enumerable:!0})};var e=c(()=>{});var a=c(()=>{e()});var u={};y(u,{loginIfSessionExists:()=>R});function R(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,n=document.cookie.indexOf("rh_sso_session")>=0,s=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&n&&s){let l=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${l}`)}}var g=c(()=>{e();a()});e();e();var p=Symbol.for("primer.customElements.definePatched"),r=customElements;if(!r[p]){let t=CustomElementRegistry.prototype.define;r.define=function(n,s,l){r.get(n)?console.warn(`Execution skipped: ${n} is already registered.`):t.call(r,n,s,l)},r[p]=!0}e();a();var E="cp_primer_global_ready",_=!1;function m(){return new Promise(t=>{_?t(window.portal.primer):window.addEventListener(E,()=>{t(window.portal.primer)})})}e();var h=!0;a();window.portal.primer.onReady=m;h&&Promise.resolve().then(()=>(g(),u)).then(({loginIfSessionExists:t})=>{t()});function d(t){let o=t.toLowerCase();return["zh_cn","zh_hans","zh-cn","zh-hans"].includes(o)?"zh-hans":["en","fr","ko","ja"].includes(o)?o:null}function b(){let t=location.pathname.match(/\/([a-z]{2}(?:[_-][a-zA-Z]+)?)(?=\/|$)/i);return t?d(t[1]):null}function k(){let t=document.cookie.match(/(?:^|;\s*)rh_locale=([^;]+)/);return t?d(t[1]):null}var f=window.portal.lang??"",v=d(f)??f,L=b()||k()||v||"en";document.documentElement.setAttribute("lang",L);
 
     </script>
     <script type="module" src="/services/primer/js/primer.js" crossorigin="anonymous"></script>
