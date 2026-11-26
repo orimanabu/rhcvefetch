@@ -8,11 +8,11 @@
 <meta property="og:site_name" content="Red Hat Customer Portal" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://access.redhat.com/security/vulnerabilities/RHSB-2026-014" />
-<meta property="og:title" content="RHSB-2026-014 Multiple kernel vulnerabilities | Red Hat Customer Portal" />
+<meta property="og:title" content="RHSB-2026-014 Multiple kernel vulnerabilities (CVE-2026-99284, CVE-2026-99388, and others) | Red Hat Customer Portal" />
 <meta property="og:description" content="Access Red Hat’s knowledge, guidance, and support through your subscription." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="Access Red Hat’s knowledge, guidance, and support through your subscription." />
-<meta name="twitter:title" content="RHSB-2026-014 Multiple kernel vulnerabilities | Red Hat Customer Portal" />
+<meta name="twitter:title" content="RHSB-2026-014 Multiple kernel vulnerabilities (CVE-2026-99284, CVE-2026-99388, and others) | Red Hat Customer Portal" />
 <meta name="twitter:image" content="https://access.redhat.com/webassets/avalon/g/shadowman-200.png" />
 <meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
 <meta name="MobileOptimized" content="width" />
@@ -26,7 +26,7 @@
 <link rel="alternate" hreflang="x-default" href="https://access.redhat.com/security/vulnerabilities/RHSB-2026-014" />
 <link rel="icon" href="/themes/custom/dxp_security_theme/favicon.ico" type="image/vnd.microsoft.icon" />
 
-    <title>RHSB-2026-014 Multiple kernel vulnerabilities | Red Hat Customer Portal</title>
+    <title>RHSB-2026-014 Multiple kernel vulnerabilities (CVE-2026-99284, CVE-2026-99388, and others) | Red Hat Customer Portal</title>
     <link rel="stylesheet" media="all" href="/sites/security/files/css/css_25bQLBulqn0UKWhu6cVuojjGDZvUebW1HSEj_KIFHYU.css?delta=0&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJx9iksOgzAMBS8UmiNFJn6IVPnJdiK4Pd100yJ2o5nhowdFHJLsDLajwFO01OpSaTr-ryyjU17ahEhi6N3TNzwPAoXdhTlyhdCa8sc5AYedLMRWCqqp_xWvL7zV6amG4ldSXMmhVYQ" />
 <link rel="stylesheet" media="all" href="/sites/security/files/css/css_hlF8yDpcS7d1td4CzRkp6wN2zqGDWyNIw9yrm1U32vs.css?delta=1&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJx9iksOgzAMBS8UmiNFJn6IVPnJdiK4Pd100yJ2o5nhowdFHJLsDLajwFO01OpSaTr-ryyjU17ahEhi6N3TNzwPAoXdhTlyhdCa8sc5AYedLMRWCqqp_xWvL7zV6amG4ldSXMmhVYQ" />
 
@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Tue Nov 24 2026 17:00:23 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Tuesday, 24-Nov-2026 17:00:31 UTC",
-        fetchdate  : "Thursday, 26-Nov-2026 05:00:39 UTC",
+        fetchdate  : "Thursday, 26-Nov-2026 05:45:50 UTC",
         primer     : {}
       };
       var w=Object.defineProperty;var c=(t,o)=>()=>(t&&(o=t(t=0)),o);var y=(t,o)=>{for(var n in o)w(t,n,{get:o[n],enumerable:!0})};var e=c(()=>{});var a=c(()=>{e()});var u={};y(u,{loginIfSessionExists:()=>R});function R(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,n=document.cookie.indexOf("rh_sso_session")>=0,s=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&n&&s){let l=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${l}`)}}var g=c(()=>{e();a()});e();e();var p=Symbol.for("primer.customElements.definePatched"),r=customElements;if(!r[p]){let t=CustomElementRegistry.prototype.define;r.define=function(n,s,l){r.get(n)?console.warn(`Execution skipped: ${n} is already registered.`):t.call(r,n,s,l)},r[p]=!0}e();a();var E="cp_primer_global_ready",_=!1;function m(){return new Promise(t=>{_?t(window.portal.primer):window.addEventListener(E,()=>{t(window.portal.primer)})})}e();var h=!0;a();window.portal.primer.onReady=m;h&&Promise.resolve().then(()=>(g(),u)).then(({loginIfSessionExists:t})=>{t()});function d(t){let o=t.toLowerCase();return["zh_cn","zh_hans","zh-cn","zh-hans"].includes(o)?"zh-hans":["en","fr","ko","ja"].includes(o)?o:null}function b(){let t=location.pathname.match(/\/([a-z]{2}(?:[_-][a-zA-Z]+)?)(?=\/|$)/i);return t?d(t[1]):null}function k(){let t=document.cookie.match(/(?:^|;\s*)rh_locale=([^;]+)/);return t?d(t[1]):null}var f=window.portal.lang??"",v=d(f)??f,L=b()||k()||v||"en";document.documentElement.setAttribute("lang",L);
@@ -986,7 +986,7 @@
   
     
       <div class="content">
-                                                                        <script>breadcrumbs = [["Home","\/"],["Security Bulletins","\/security\/vulnerabilities"],["RHSB-2026-014 Multiple kernel vulnerabilities"]]</script>
+                                                                        <script>breadcrumbs = [["Home","\/"],["Security Bulletins","\/security\/vulnerabilities"],["RHSB-2026-014 Multiple kernel vulnerabilities (CVE-2026-99284, CVE-2026-99388, and others)"]]</script>
 
 
 
@@ -994,7 +994,7 @@
   </div>
 
 
-    
+      
 
 <article class="page vulnerability" id='main-content'>
   <div class="hero container-fluid push-bottom">
@@ -1032,11 +1032,11 @@
 
         <div class="col-sm-11" lang="en">
           <header class="header push-top-narrow">
-            <h1 class="title rh-vulnerability-static__h1">RHSB-2026-014 Multiple kernel vulnerabilities</h1>
+            <h1 class="title rh-vulnerability-static__h1">RHSB-2026-014 Multiple kernel vulnerabilities (CVE-2026-99284, CVE-2026-99388, and others)</h1>
             <div class="published-date">
-                                                <span>Created Date: <pfe-datetime id="simpleUnixtime" timestamp="1792881095" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> October 24, 2026, 18:31</pfe-datetime></span>
-                                            <br>
-              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1794391505" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 11, 2026, 05:05</pfe-datetime></span>
+                                                                    <span>Public Date: <pfe-datetime id="simpleUnixtime" timestamp="1794084033" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> October 24, 2026, 18:31</pfe-datetime></span>
+                                                              <br>
+              <span>Updated <pfe-datetime id="simpleUnixtime" timestamp="1795671587" type="local" day="numeric" month="long" year="numeric" hour="2-digit" minute="2-digit" locale="en"> November 26, 2026, 00:39</pfe-datetime></span>
             </div>
             <div class="row">
               <div class="bulletins-vote-feedback">
@@ -1061,6 +1061,15 @@
                       </span>
                   </div>
                 
+                                  <div id="stat-card-impact" class="stat-card-left pfe-m-6-col-on-md pfe-m-4-col-on-lg">
+                      <span class="stat-number rh-vulnerability-static__impact-stat rh-vulnerability-static__impact-important">
+                        <pfe-icon icon="rh-icon-vulnerability-updated" pfe-size="lg" aria-hidden="true"></pfe-icon>
+                      </span>
+                    <span class="stat-title white">
+                        Important
+                        <span class="stat-subtitle">Impact</span>
+                      </span>
+                  </div>
                 
                 
               </div>             </div>           </header>
@@ -1069,12 +1078,12 @@
     <div class="row">
             <div class="vulnerability__body">
             <div><h2>Executive Summary</h2>
-<p>Some details have been disclosed about a group of Linux kernel vulnerabilities. The following information is a preliminary analysis of their impact on Red Hat products. Upstream patches are not yet available and no CVEs have been assigned.</p>
+<p>Some details have been disclosed about a group of Linux kernel vulnerabilities. The following information is an analysis of their impact on Red Hat products. Upstream patches and CVE IDs are now available for some of these issues, while others remain under investigation.</p>
 <h2>Not Affected</h2>
 <p>No supported versions of Red Hat Enterprise Linux are affected by these vulnerabilities. The affected kernel modules are not built or the vulnerable features are not enabled.</p>
 <ul>
 <li>ZDI-CAN-33774</li>
-<li>ZDI-CAN-33549</li>
+<li><a href="https://access.redhat.com/security/cve/CVE-2026-99388">CVE-2026-99388</a> (ZDI-CAN-33549)</li>
 </ul>
 <h2>Potentially Affected</h2>
 <p>The following reported vulnerabilities continue to be under evaluation:</p>
@@ -1084,7 +1093,7 @@
 </ul>
 <h2>Affected</h2>
 <ul>
-<li>ZDI-CAN-33367 - Important
+<li><a href="https://access.redhat.com/security/cve/CVE-2026-99284">CVE-2026-99284</a> (ZDI-CAN-33367) - Important
 <ul>
 <li>Patches available as follows:
 <ul>
