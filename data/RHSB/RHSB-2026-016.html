@@ -27,7 +27,7 @@
 <link rel="icon" href="/themes/custom/dxp_security_theme/favicon.ico" type="image/vnd.microsoft.icon" />
 
     <title>RHSB-2026-016 Use-after-free - Linux kernel IPv4 (CVE-2026-98432) | Red Hat Customer Portal</title>
-    <link rel="stylesheet" media="all" href="/sites/security/files/css/css_25bQLBulqn0UKWhu6cVuojjGDZvUebW1HSEj_KIFHYU.css?delta=0&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJx9iksOgzAMBS8UmiNFJn6IVPnJdiK4Pd100yJ2o5nhowdFHJLsDLajwFO01OpSaTr-ryyjU17ahEhi6N3TNzwPAoXdhTlyhdCa8sc5AYedLMRWCqqp_xWvL7zV6amG4ldSXMmhVYQ" />
+    <link rel="stylesheet" media="all" href="/sites/security/files/css/css_r8Ev1jkNIfQsggHrFEEabLK_DQ2HFT_5lCiptr3lfMg.css?delta=0&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJx9iksOgzAMBS8UmiNFJn6IVPnJdiK4Pd100yJ2o5nhowdFHJLsDLajwFO01OpSaTr-ryyjU17ahEhi6N3TNzwPAoXdhTlyhdCa8sc5AYedLMRWCqqp_xWvL7zV6amG4ldSXMmhVYQ" />
 <link rel="stylesheet" media="all" href="/sites/security/files/css/css_hlF8yDpcS7d1td4CzRkp6wN2zqGDWyNIw9yrm1U32vs.css?delta=1&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJx9iksOgzAMBS8UmiNFJn6IVPnJdiK4Pd100yJ2o5nhowdFHJLsDLajwFO01OpSaTr-ryyjU17ahEhi6N3TNzwPAoXdhTlyhdCa8sc5AYedLMRWCqqp_xWvL7zV6amG4ldSXMmhVYQ" />
 
     <script>
@@ -114,7 +114,7 @@
         version    : "1.5.32",
         builddate  : "Tue Nov 24 2026 17:00:23 GMT+0000 (Coordinated Universal Time)",
         deploydate : "Tuesday, 24-Nov-2026 17:00:31 UTC",
-        fetchdate  : "Thursday, 26-Nov-2026 07:00:39 UTC",
+        fetchdate  : "Thursday, 26-Nov-2026 08:00:48 UTC",
         primer     : {}
       };
       var w=Object.defineProperty;var c=(t,o)=>()=>(t&&(o=t(t=0)),o);var y=(t,o)=>{for(var n in o)w(t,n,{get:o[n],enumerable:!0})};var e=c(()=>{});var a=c(()=>{e()});var u={};y(u,{loginIfSessionExists:()=>R});function R(){let t=!/\/logout.*/.test(location.pathname),o=window.portal.host===location.origin,n=document.cookie.indexOf("rh_sso_session")>=0,s=!(document.cookie.indexOf("rh_jwt")>=0);if(t&&o&&n&&s){let l=encodeURIComponent(window.location.href);window.location.assign(`/login?redirectTo=${l}`)}}var g=c(()=>{e();a()});e();e();var p=Symbol.for("primer.customElements.definePatched"),r=customElements;if(!r[p]){let t=CustomElementRegistry.prototype.define;r.define=function(n,s,l){r.get(n)?console.warn(`Execution skipped: ${n} is already registered.`):t.call(r,n,s,l)},r[p]=!0}e();a();var E="cp_primer_global_ready",_=!1;function m(){return new Promise(t=>{_?t(window.portal.primer):window.addEventListener(E,()=>{t(window.portal.primer)})})}e();var h=!0;a();window.portal.primer.onReady=m;h&&Promise.resolve().then(()=>(g(),u)).then(({loginIfSessionExists:t})=>{t()});function d(t){let o=t.toLowerCase();return["zh_cn","zh_hans","zh-cn","zh-hans"].includes(o)?"zh-hans":["en","fr","ko","ja"].includes(o)?o:null}function b(){let t=location.pathname.match(/\/([a-z]{2}(?:[_-][a-zA-Z]+)?)(?=\/|$)/i);return t?d(t[1]):null}function k(){let t=document.cookie.match(/(?:^|;\s*)rh_locale=([^;]+)/);return t?d(t[1]):null}var f=window.portal.lang??"",v=d(f)??f,L=b()||k()||v||"en";document.documentElement.setAttribute("lang",L);
@@ -1428,7 +1428,7 @@ sudo systemctl reload nftables.service
 
     
     <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"","currentPath":"node\/404013","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"red_hat_jwt":{"client_id":"customer-portal","cookie_name":"rh_jwt","scopes":"","leeway":"0","realm":"redhat-external","sso_host":"https:\/\/sso.redhat.com","user_integration":1,"user_plugin":"dxp_security_sso_user_auth","debug":0,"store_external_id":1,"external_id_jwt_property":"sub","stateless_auth":1,"use_external_js":0,"use_internal_js":0,"use_in_admin":0},"red_hat_drawers":{"host":"https:\/\/dxp-dxsp-prod.apps.ext-waf.drop.prod.us-west-2.aws.paas.redhat.com","entityId":"404013","entityType":"node","langcode":"en"},"user":{"uid":0,"permissionsHash":"d4154d64334ce933b99270825930fa7b5a52ec4b56e8205226518d5d623ab80e"}}</script>
-<script src="/sites/security/files/js/js_OatgR5S1_CQMds69g78i63memAQv_djeXGB4FOP_tOY.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJxtikEWwjAIBS_UmiPlQcA2Pkh8QKy9vS5qF-ru_5mh5z07l2E19hwrK6drF-nbRL_mMaSxAVZ5s8mY8gqREZyPAI2Big3Ff3aRjiCzxy61LWdRuiq38PQNLp9x8zMmg43NE5DWNh_vBYpMTog"></script>
+<script src="/sites/security/files/js/js_49hGUb97qLfI488LLj71lROgpgI7AOqGfXR-ZT2yW1Y.js?scope=footer&amp;delta=0&amp;language=en&amp;theme=dxp_security_theme&amp;include=eJxtikEWwjAIBS_UmiPlQcA2Pkh8QKy9vS5qF-ru_5mh5z07l2E19hwrK6drF-nbRL_mMaSxAVZ5s8mY8gqREZyPAI2Big3Ff3aRjiCzxy61LWdRuiq38PQNLp9x8zMmg43NE5DWNh_vBYpMTog"></script>
 
   </body>
 </html>
